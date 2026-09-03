@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লোকাল জব পোর্টাল</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDK Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>কাজ খুঁজুন বা লোক নিয়োগ করুন</h1>
+        <p>ব্যবসায়ী ও চাকরিপ্রার্থীদের যোগাযোগের সঠিক মাধ্যম</p>
+        <button id="logoutBtn" style="display: none; width: auto; padding: 5px 15px; margin-top: 10px; background: #dc3545;">লগ আউট</button>
+    </header>
+
+    <!-- ১. সাইন ইন/লগইন সেকশন -->
+    <div id="authContainer" class="auth-box">
+        <h2>একাউন্ট সাইন আপ / লগইন করুন</h2>
+        <form id="authForm">
+            <input type="text" id="userName" placeholder="আপনার পূর্ণ নাম" required>
+            <input type="tel" id="userPhone" placeholder="মোবাইল নম্বর (যেমন: 9876543210)" required>
+            <select id="userRole" required>
+                <option value="">আপনার ভূমিকা নির্বাচন করুন</option>
+                <option value="business">আমি ব্যবসায়ী (লোক নিয়োগ করতে চাই)</option>
+                <option value="jobseeker">আমি চাকরিপ্রার্থী (কাজ করতে চাই)</option>
+            </select>
+            <button type="submit" id="authBtn">প্রবেশ করুন</button>
+        </form>
+    </div>
+
+    <!-- ২. মূল পোর্টাল (লগইন করার পর দেখাবে) -->
+    <div class="container" id="mainPortal" style="display: none;">
+        <!-- ব্যবসায়ী বা নিয়োগকর্তার অংশ -->
+        <section class="form-section" id="employerSection">
+            <h2>চাকরির নিয়োগ দিন (ব্যবসায়ীদের জন্য)</h2>
+            <form id="jobForm">
+                <input type="text" id="companyName" placeholder="ব্যবসা বা দোকানের নাম" required>
+                <input type="text" id="jobTitle" placeholder="কাজের নাম (যেমন: সেলসম্যান/হেল্পার)" required>
+                <input type="text" id="salary" placeholder="কত টাকা বেতন দেবেন (যেমন: ৮,০০০/মাস)" required>
+                <input type="text" id="location" placeholder="লোকেশন বা ঠিকানা" required>
+                <textarea id="qualifications" placeholder="কী কী যোগ্যতা চাই (যেমন: অভিজ্ঞ, সৎ)" rows="3" required></textarea>
+                <input type="tel" id="contact" placeholder="যোগাযোগের ফোন নম্বর" required>
+                <button type="submit">পোস্ট করুন</button>
+            </form>
+        </section>
+
+        <!-- চাকরিপ্রার্থীদের অংশ -->
+        <section class="jobs-section">
+            <h2>উপলব্ধ কাজসমূহ (চাকরিপ্রার্থীদের জন্য)</h2>
+            <div id="jobList">
+                <!-- এখানে নতুন চাকরির পোস্টগুলো দেখাবে -->
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
