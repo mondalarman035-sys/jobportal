@@ -7,7 +7,7 @@ const firebaseConfig = {
     storageBucket: "YOUR_PROJECT_ID.appspot.com",
     messagingSenderId: "YOUR_SENDER_ID",
     appId: "YOUR_APP_ID"
-};
+}; 
 
 // ২. Firebase ইনিশিয়ালাইজ করা
 firebase.initializeApp(firebaseConfig);
