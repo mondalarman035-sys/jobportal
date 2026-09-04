@@ -12,6 +12,16 @@ const firebaseConfig = {
 // ২. Firebase ইনিশিয়ালাইজ করা
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
+// পেজ লোড হওয়ার সাথে সাথেই লোকালস্টোরেজ চেক করা যেন পুরনো ডেটা মুছে না যায়
+window.addEventListener('DOMContentLoaded', () => {
+    const savedUser = localStorage.getItem('userProfile');
+    if (savedUser) {
+        const userData = JSON.parse(savedUser);
+        console.log("Found saved user:", userData.name);
+        // এখানে চাইলে আপনার ড্যাশবোর্ড বা হোম পেজে রিডাইরেক্ট করার কোড দিতে পারেন
+    }
+});
+
 
 // ৩. লগইন / সাইন আপ হ্যান্ডলিং (Local Cache দিয়ে সেভ রাখা)
 document.getElementById('authForm').addEventListener('submit', function(e) {
